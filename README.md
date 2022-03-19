@@ -1,6 +1,8 @@
 **Module 6: Server-Side APIs Challenge: Weather Dashboard**
 
-This week's challenge 
+This week's challenge
+<!-- Use the Geocoding API from OpenWeather in order to use city names for searches-->
+<!-- The One Call API is used to bring up weather from searched city -->
 
 **User Story:**
 
