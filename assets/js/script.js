@@ -12,8 +12,8 @@ var getCity = function(name) {
 
     // the API request
     fetch(geoApiUrl).then(function(response) {
-        response.json().then(function(data) {
-            console.log(data);
+        response.json().then(function(dataGeo) {
+            console.log(dataGeo);
         });
     });
 };
@@ -21,10 +21,21 @@ var getCity = function(name) {
 // Insert City name as object of getCity function to get that city in the Geo API response:
 getCity("Atlanta");
 
-// var getWeather = function() {
-//     var response = fetch('https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&appid=${apiKey}')
-//     var dataWeather = response.json();
-//     console.log(dataWeather);
-// };
+// calling "Chicago" ("lat: 33.44" & "lon: -94.04") in One Call API:
+// fetch('https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&appid=4d05b6f1e04f1e497e900b04da198f9d')
 
-// getWeather();
+// function to get the weather of a location based on "lat" and "lon" (from JSON data for each call)
+var getWeather = function(lat, lon) {
+    // the One Call API url + variables
+    var weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+
+    // the API request
+    fetch(weatherApiUrl).then(function(response) {
+        response.json().then(function(dataWeather) {
+            console.log(dataWeather);
+        });
+    });
+};
+
+// lat & lon are for Atlanta
+getWeather("33.74", "-84.39");
