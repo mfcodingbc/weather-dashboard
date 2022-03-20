@@ -1,5 +1,7 @@
 var apiKey = "4d05b6f1e04f1e497e900b04da198f9d";
 
+var currentWeatherEl = document.getElementById("currentWeatherText");
+
 // REMOVE the '{}' from the GET call, otherwise the call will NOT work
 
 // calling "Atlanta" in Geocoding API:
@@ -14,6 +16,7 @@ var getCity = function(name) {
     fetch(geoApiUrl).then(function(response) {
         response.json().then(function(dataGeo) {
             console.log(dataGeo);
+            currentWeatherEl.textContent = dataGeo.name
         });
     });
 };
