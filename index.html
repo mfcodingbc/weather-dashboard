@@ -39,7 +39,7 @@
         <!-- City Search SideBar Form -->
         <div class="row">
             <section class="col-12 col-md-3">
-                <form class="border-bottom border-dark pb-4">
+                <form class="border-bottom border-dark pb-4" id="city-form">
                     <div class="mb-3">
                         <label for="inputCitySearch" class="form-label">
                             <h3>Search for a City:</h3>
@@ -63,11 +63,11 @@
                 <!-- dynaically created div containing the location searched and current day weather data -->
                 <!-- EXAMPLE DIV -->
                 <div class="p-1 border border-dark">
-                    <h3 id="currentWeatherText">City Name + Current Day Here (Example: Atlanta (03/19/2022)) + Weather Icon</h3>
-                    <p class="p-3 fw-bold" id="textCurrent">Temperature: Temp Data Here</p>
-                    <p class="p-3 fw-bold">Wind: Wind Data Here</p>
-                    <p class="p-3 fw-bold">Humidity: Humidity Data Here</p>
-                    <p class="p-3 fw-bold">UV Index: UV Index Data Here (color coordinated based on conditions: favorable(green/success), moderate(yellow/warning), severe(red/danger))</p>
+                    <h3 id="current-city"><span id="current-day"></span><span id="weather-icon"></span></h3>
+                    <p class="p-3 fw-bold">Temperature: <span id="current-text-temp"></span>Temp Data Here</p>
+                    <p class="p-3 fw-bold">Wind: <span id="current-text-wind"></span>Wind Data Here</p>
+                    <p class="p-3 fw-bold">Humidity: <span id="current-text-humid"></span>Humidity Data Here</p>
+                    <p class="p-3 fw-bold">UV Index: <span id="current-text-uv"></span>UV Index Data Here (color coordinated based on conditions: favorable(green/success), moderate(yellow/warning), severe(red/danger))</p>
                 </div>
                 <!-- The 5-Day Forecast Section -->
                 <div class="p-1">
@@ -75,7 +75,7 @@
                     <!-- Presenting each Day's forecast in a row, created dynamically from data -->
                     <div class="row">
                         <div class="col bg-dark p-2 m-2">
-                            <p class="text-white fw-bold" id="textForecast">(Tomorrow)(03/20/2022)</p>
+                            <p class="text-white fw-bold" id="textForecast">(Tomorrow)</p>
                             <p class="text-white">Weather Icon</p>
                             <p class="p-2 text-white">Temp:</p>
                             <p class="p-2 text-white">Wind:</p>
@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="col bg-dark p-2 m-2">
-                            <p class="text-white fw-bold">(The Day After)(03/21/2022)</p>
+                            <p class="text-white fw-bold">(The Day After)</p>
                             <p class="text-white">Weather Icon</p>
                             <p class="p-2 text-white">Temp:</p>
                             <p class="p-2 text-white">Wind:</p>
@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="col bg-dark p-2 m-2">
-                            <p class="text-white fw-bold">(Later)(03/22/2022)</p>
+                            <p class="text-white fw-bold">(Later)</p>
                             <p class="text-white">Weather Icon</p>
                             <p class="p-2 text-white">Temp:</p>
                             <p class="p-2 text-white">Wind:</p>
@@ -99,7 +99,7 @@
                         </div>
 
                         <div class="col bg-dark p-2 m-2">
-                            <p class="text-white fw-bold">(Later Again)(03/23/2022)</p>
+                            <p class="text-white fw-bold">(Later Again)</p>
                             <p class="text-white">Weather Icon</p>
                             <p class="p-2 text-white">Temp:</p>
                             <p class="p-2 text-white">Wind:</p>
@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="col bg-dark p-2 m-2">
-                            <p class="text-white fw-bold">(Later Still)(03/24/2022)</p>
+                            <p class="text-white fw-bold">(Later Still)</p>
                             <p class="text-white">Weather Icon</p>
                             <p class="p-2 text-white">Temp:</p>
                             <p class="p-2 text-white">Wind:</p>
