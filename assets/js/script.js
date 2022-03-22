@@ -31,20 +31,12 @@ var formSubmitHandler = function(event) {
     console.log(event);
 };
 
-var logLatLon = function(lat, lon) {
-    console.log(lat);
-    console.log(lon);
-};
-
-var displayCurrentCity = function(dataGeo, name) {
+var displayCurrentCity = function(location, name) {
     currentCityNameEl.textContent = "";
     currentCityNameEl.textContent = name;
+    console.log(location);
+    console.log(name);
 };
-
-// var displayCurrentDay = function(dataGeo, date) {
-//     currentDayEl.textContent = "";
-//     currentDayEl.textContent = date;
-// };
 
 // calling "Atlanta" in Geocoding API:
 // fetch('http://api.openweathermap.org/geo/1.0/direct?q=Atlanta,GA,USA&limit=1&appid=4d05b6f1e04f1e497e900b04da198f9d')
@@ -59,7 +51,7 @@ var getCity = function(name) {
     fetch(geoApiUrl).then(function(response) {
         response.json().then(function(dataGeo) {
             displayCurrentCity(dataGeo, name);
-            // displayCurrentDay(dataGeo, date);
+            getWeather(dataGeo);
         });
     });
 };
@@ -71,16 +63,55 @@ var getCity = function(name) {
 // fetch('https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&appid=4d05b6f1e04f1e497e900b04da198f9d')
 
 // function to get the weather of a location based on "lat" and "lon" (from JSON data for each call)
-var getWeather = function(lat, lon) {
-    // the One Call API url + variables
-    var weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+var getWeather = function(location) {
+    // setting the units for the API call into US standard measurements
+    var units = "imperial"
+
+    // converting the lat & lon number values into strings
+    console.log(location);
+    var lat = location[0].lat;
+    lat.toString();
+    var lon = location[0].lon;
+    lon.toString();
+
+    // the One Call API url + variables (change units to imperial for US measurements)
+    var weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=" + units + "&appid=" + apiKey;
 
     // the API request
     fetch(weatherApiUrl).then(function(response) {
         response.json().then(function(dataWeather) {
             console.log(dataWeather);
+            getCurrentWeather(dataWeather);
+            getWeatherIcon(dataWeather);
         });
     });
+};
+
+var getCurrentWeather = function(weatherToday) {
+    // creating and setting the appropriate stats for current weather
+    var tempEl = document.createElement("div")
+    currentTempEl.textContent = weatherToday.current.temp + "°F";
+    currentWindEl.textContent = weatherToday.current.wind_speed + " miles per hour";
+    currentHumidEl.textContent = weatherToday.current.humidity + "%";
+    currentUVEl.textContent = weatherToday.current.uvi;
+        if (currentUVEl.textContent < 3) {
+            $(currentUVEl).addClass("bg-success px-3 rounded-pill text-white")
+        } else if (currentUVEl.textContent < 6 ) {
+            $(currentUVEl).addClass("bg-warning")
+        } else {
+            $(currentUVEl).addClass("bg-danger")
+        };
+
+};
+
+
+var getWeatherIcon = function(weatherIcon) {
+    // for current weather icon
+    var icon = weatherIcon.current.weather[0].icon
+
+    var iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+
+    console.log(iconUrl);
 };
 
 // lat & lon are for Atlanta
